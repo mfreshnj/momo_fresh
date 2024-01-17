@@ -229,14 +229,71 @@ $(document).ready(function () {
   }
 });
 
-function openWhatsapp() {
-  // console.log($('#address'));
+function sendDataToSheet() {
 
   if ($("#address")[0].value === "") {
     alert("Please Enter Address");
     return;
   } else {
     let total = 0;
+    let person_name = $("#person_name")[0].value;
+    let phone_number = $("#phone_number")[0].value
+    let address = $("#address")[0].value;
+    let note = $("#note")[0].value;
+    let wTxt = "*name*                                                                        *quantity*      *price* \n";
+
+    let taxes = 0; 
+    let delivery_fee = 0; 
+    let tip = 0; 
+    let pick_date_time_order = ""
+
+
+    for (var i = 0; i < food.length; i++) {
+      food_index = i+1
+      let name = food[i][0];
+      let quantity = food[i][1];
+      total = total + food[i][1] * food[i][2];
+      wTxt = wTxt + food_index + ". " + name + "                                                                        " + quantity +  "      " + food[i][1] * food[i][2] + "  \n";
+    }
+
+  const formData = new FormData();
+
+  formData.append("Name", person_name);
+  formData.append("Phone", phone_number);
+  formData.append("Address", address);
+  formData.append("Order", wTxt);
+  formData.append("Note", note);
+  formData.append("Total", total);
+  formData.append("Tax", taxes );
+  formData.append("Delivery Fee", delivery_fee);
+  formData.append("Tip", tip);
+  formData.append("Fulfill Date and Time", pick_date_time_order);
+
+
+  const action = "https://script.google.com/macros/s/AKfycbxkORRLuTLiK7zus38JDJoiyllH3P9kTeU29Lf324vveJ_LEDED_Z3dDk9gECzdjfjyZw/exec";
+  fetch(action, {
+    method: 'POST',
+    body: formData,
+  })
+  .then(() => {
+    alert("Successfully placed an Order !");
+  })
+
+}
+}
+
+function openWhatsapp() {
+  // console.log($('#address'));
+
+  sendDataToSheet();
+
+  if ($("#address")[0].value === "") {
+    alert("Please Enter Address");
+    return;
+  } else {
+    let total = 0;
+    let person_name = $("#person_name")[0].value;
+    let phone_number = $("#phone_number")[0].value
     let address = $("#address")[0].value;
     let note = $("#note")[0].value;
     let wTxt = "*name*               *quantity* \n";
@@ -250,18 +307,12 @@ function openWhatsapp() {
 
     if ($("#note")[0].value === "") {
       wTxt =
-        wTxt + "\n *Total Bill: " + total + "*" + "\n\n Address: " + address;
+        // wTxt + "\n *Total Bill: " + total + "*" + "\n\n Address: " + address;
+        wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address ;
     } else {
-      wTxt =
-        wTxt +
-        "\n *Total Bill: " +
-        total +
-        "*" +
-        "\n\n Address: " +
-        address +
-        "\n Note: " +
-        note;
+        wTxt = wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address  +  "\n Note: " + note;
     }
+
 
     let wTxtEncoded = encodeURI(wTxt);
     // window.open("https://wa.me/917428789065?text=" + wTxtEncoded);
