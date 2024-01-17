@@ -245,7 +245,7 @@ function sendDataToSheet() {
     let taxes = 0; 
     let delivery_fee = 0; 
     let tip = 0; 
-    let pick_date_time_order = ""
+    let delivery_time = $("#delivery_time")[0].value;
 
 
     for (var i = 0; i < food.length; i++) {
@@ -267,7 +267,7 @@ function sendDataToSheet() {
   formData.append("Tax", taxes );
   formData.append("Delivery Fee", delivery_fee);
   formData.append("Tip", tip);
-  formData.append("Fulfill Date and Time", pick_date_time_order);
+  formData.append("Fulfill Date and Time", delivery_time);
 
 
   const action = "https://script.google.com/macros/s/AKfycbxkORRLuTLiK7zus38JDJoiyllH3P9kTeU29Lf324vveJ_LEDED_Z3dDk9gECzdjfjyZw/exec";

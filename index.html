@@ -265,6 +265,18 @@
                         ></textarea> -->
                         <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
                       </div>
+
+                      <div class="mb-3 px-2">
+                      <label for="delivery_time">Pick date and time for order:</label>
+                      <input
+                        type="datetime-local"
+                        id="delivery_time"
+                        name="meeting-time"
+                        value="2024-01-17T19:30"
+                        min="2024-01-01T00:00"
+                        max="2030-06-14T00:00" />
+                      </div>
+
                       <div class="mb-3 px-2">
                         <label for="address">Address *</label> <br />
                         <textarea
