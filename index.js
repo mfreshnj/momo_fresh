@@ -276,7 +276,7 @@ function sendDataToSheet() {
     body: formData,
   })
   .then(() => {
-    alert("Successfully placed an Order !");
+    alert("Successfully placed an Order ! You can reach out to +1 (929) 393-1494 for any inqueries. ");
   })
 
 }
