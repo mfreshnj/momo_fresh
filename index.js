@@ -325,24 +325,3 @@ function openWhatsapp() {
     window.open("https://api.whatsapp.com/send?phone=19293931494&text=" + wTxtEncoded);
   }
 }
-
-
-let total = 0;
-let person_name = $("#person_name")[0].value;
-let phone_number = $("#phone_number")[0].value
-let address = $("#address")[0].value;
-let note = $("#note")[0].value;
-let wTxt = "*name*                                                                        *quantity*      *price* \n";
-
-let taxes = 0; 
-let delivery_fee = 0; 
-let tip = 0; 
-
-
-for (var i = 0; i < food.length; i++) {
-  food_index = i+1
-  let name = food[i][0];
-  let quantity = food[i][1];
-  total = total + food[i][1] * food[i][2];
-  wTxt = wTxt + food_index + ". " + name + "                                                                        " + quantity +  "      " + food[i][1] * food[i][2] + "  \n";
-}
