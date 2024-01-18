@@ -314,7 +314,7 @@ function openWhatsapp() {
         // wTxt + "\n *Total Bill: " + total + "*" + "\n\n Address: " + address;
         wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address + "\n Order Date and Time: " + delivery_time ;
     } else {
-        wTxt = wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address  +  + "\n Order Date and Time: " + delivery_time  + "\n Note: " + note;
+        wTxt = wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address  + "\n Order Date and Time: " + delivery_time  + "\n Note: " + note;
     }
 
 
