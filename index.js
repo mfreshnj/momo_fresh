@@ -295,27 +295,54 @@ function openWhatsapp() {
     let person_name = $("#person_name")[0].value;
     let phone_number = $("#phone_number")[0].value
     let address = $("#address")[0].value;
+    let delivery_time = $("#delivery_time")[0].value;
     let note = $("#note")[0].value;
-    let wTxt = "*name*               *quantity* \n";
+    let wTxt = "*name*                            *quantity*    *price* \n";
 
     for (var i = 0; i < food.length; i++) {
       let name = food[i][0];
       let quantity = food[i][1];
       total = total + food[i][1] * food[i][2];
-      wTxt = wTxt + name + "      " + quantity + "  \n";
+      food_index = i+1
+      // wTxt = wTxt + name + "      " + quantity + "  \n";
+      wTxt = wTxt + food_index + ". " + name + "             " + quantity +  "    " + food[i][1] * food[i][2] + "  \n";
+
     }
 
     if ($("#note")[0].value === "") {
       wTxt =
         // wTxt + "\n *Total Bill: " + total + "*" + "\n\n Address: " + address;
-        wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address ;
+        wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address + "\n Order Date and Time: " + delivery_time ;
     } else {
-        wTxt = wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address  +  "\n Note: " + note;
+        wTxt = wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address  +  + "\n Order Date and Time: " + delivery_time  + "\n Note: " + note;
     }
+
+
 
 
     let wTxtEncoded = encodeURI(wTxt);
     // window.open("https://wa.me/917428789065?text=" + wTxtEncoded);
     window.open("https://api.whatsapp.com/send?phone=19293931494&text=" + wTxtEncoded);
   }
+}
+
+
+let total = 0;
+let person_name = $("#person_name")[0].value;
+let phone_number = $("#phone_number")[0].value
+let address = $("#address")[0].value;
+let note = $("#note")[0].value;
+let wTxt = "*name*                                                                        *quantity*      *price* \n";
+
+let taxes = 0; 
+let delivery_fee = 0; 
+let tip = 0; 
+
+
+for (var i = 0; i < food.length; i++) {
+  food_index = i+1
+  let name = food[i][0];
+  let quantity = food[i][1];
+  total = total + food[i][1] * food[i][2];
+  wTxt = wTxt + food_index + ". " + name + "                                                                        " + quantity +  "      " + food[i][1] * food[i][2] + "  \n";
 }
