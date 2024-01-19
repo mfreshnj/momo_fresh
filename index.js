@@ -1,6 +1,11 @@
 let food = [];
 let totalAmount = 0;
 
+
+var today = new Date().toISOString().slice(0, 16);
+
+document.getElementsByName("delivery_time")[0].min = today;
+
 $(document).ready(function () {
   if ($(document).width() <= 992) {
     $(".navbar-nav").removeClass("ml-auto");
@@ -312,9 +317,9 @@ function openWhatsapp() {
     if ($("#note")[0].value === "") {
       wTxt =
         // wTxt + "\n *Total Bill: " + total + "*" + "\n\n Address: " + address;
-        wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address + "\n Order Date and Time: " + delivery_time ;
+        wTxt + "\n *Total Bill: $ " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address + "\n Order Date and Time: " + delivery_time ;
     } else {
-        wTxt = wTxt + "\n *Total Bill: " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address  + "\n Order Date and Time: " + delivery_time  + "\n Note: " + note;
+        wTxt = wTxt + "\n *Total Bill: $ " + total + "*" + "\n\n Name: " + person_name + "\n Phone: " + phone_number + "\n Address: " + address  + "\n Order Date and Time: " + delivery_time  + "\n Note: " + note;
     }
 
 
