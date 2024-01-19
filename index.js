@@ -5,6 +5,19 @@ let totalAmount = 0;
 var today = new Date().toISOString().slice(0, 16);
 
 document.getElementsByName("delivery_time")[0].min = today;
+document.getElementsByName("delivery_time")[0].value = today;
+
+window.addEventListener('load', () => {
+  var now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  console.log(now)
+
+  /* remove second/millisecond if needed - credit ref. https://stackoverflow.com/questions/24468518/html5-input-datetime-local-default-value-of-today-and-current-time#comment112871765_60884408 */
+  now.setMilliseconds(null)
+  now.setSeconds(null)
+
+  document.getElementById('cal').value = now.toISOString().slice(0, -8);
+});
 
 $(document).ready(function () {
   if ($(document).width() <= 992) {
