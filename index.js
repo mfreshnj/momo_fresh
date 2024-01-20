@@ -2,12 +2,13 @@ let food = [];
 let totalAmount = 0;
 
 
-var today = new Date().toISOString().slice(0, 16);
 
-document.getElementsByName("delivery_time")[0].min = today;
-document.getElementsByName("delivery_time")[0].value = today;
+
+// document.getElementsByName("delivery_time")[0].value = today;
 
 window.addEventListener('load', () => {
+  var today = new Date().toISOString().slice(0, 16);
+
   var now = new Date();
   now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
   console.log(now)
@@ -16,7 +17,8 @@ window.addEventListener('load', () => {
   now.setMilliseconds(null)
   now.setSeconds(null)
 
-  document.getElementById('cal').value = now.toISOString().slice(0, -8);
+  document.getElementsByName("delivery_time")[0].min = today;
+  document.getElementById('delivery_time').value = now.toISOString().slice(0, -8);
 });
 
 $(document).ready(function () {
